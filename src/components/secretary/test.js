@@ -47,7 +47,7 @@ export default function TestFunc(props) {
         test.type = props.location.state.data.type
         test.questions = arrQustions
         test.answers = arrAnswers
-        axios.post('https://certificate-easily.onrender.com/api/tests', test)
+        axios.post('https://certificates-easily-back.onrender.com/api/tests', test)
             .then(r => r.data)
             .then(s => {
                 setIsAdd(true)

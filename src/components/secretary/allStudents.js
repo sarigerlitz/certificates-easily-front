@@ -89,13 +89,13 @@ export default function AllStudents(props) {
   const [studentNew, setStudentNew] = useState(null);
 
   useEffect(() => {
-    axios.get('https://certificate-easily.onrender.com/api/students')
+    axios.get('https://certificates-easily-back.onrender.com/api/students')
       .then(r => r.data)
       .then(s => {
         setArrStudent(s)
         setStudent(s)
       })
-    axios.get('https://certificate-easily.onrender.com/api/subject')
+    axios.get('https://certificates-easily-back.onrender.com/api/subject')
       .then(r => r.data)
       .then(s => setArrSubject(s))
       .catch(err => console.log(err))
@@ -106,7 +106,7 @@ export default function AllStudents(props) {
     setAddMarkDialog(false);
     let arr = [...arrStudents]
     if (subject == 'אחר') {
-      await axios.post('https://certificate-easily.onrender.com/api/subject', { subject: newSubject })
+      await axios.post('https://certificates-easily-back.onrender.com/api/subject', { subject: newSubject })
         .then(r => r.data)
         .then(s => {
           arr[studentAddMark].tests.push({ subjectId: s._id, mark: mark ? mark : '' })
@@ -125,7 +125,7 @@ export default function AllStudents(props) {
     setArrStudent(students.filter(s => s.firstName.includes(e) || s.lastName.includes(e) || s.email.includes(e) || s.id.includes(e) || s.schoolYear.includes(e)))
   }
   function updateStudent(key) {
-    axios.put('https://certificate-easily.onrender.com/api/students', arrStudents[key])
+    axios.put('https://certificates-easily-back.onrender.com/api/students', arrStudents[key])
       .then(r => r.data)
       .then(s => {
       }).catch(err => console.log(err))
@@ -138,7 +138,7 @@ export default function AllStudents(props) {
   }
   function deleteStudent() {
     let id = studentId;
-    axios.delete('https://certificate-easily.onrender.com/api/students/' + id)
+    axios.delete('https://certificates-easily-back.onrender.com/api/students/' + id)
       .then(r => r.data)
       .then(res => {
         setArrStudent(arrStudents.filter(s => s._id !== id))
@@ -194,11 +194,11 @@ export default function AllStudents(props) {
     s.email = studentNew.email
     s.schoolYear = studentNew.schoolYear
     s.BalanceOfPayment = studentNew.BalanceOfPayment
-    axios.post('https://certificate-easily.onrender.com/api/students', s)
+    axios.post('https://certificates-easily-back.onrender.com/api/students', s)
       .then(r => r.data)
       .then(res => {
         //קריאת שרת של התלמידות מחדש כדי שהנתונים בטבלה יהיו מעודכנים
-        axios.get('https://certificate-easily.onrender.com/api/students')
+        axios.get('https://certificates-easily-back.onrender.com/api/students')
           .then(re => re.data)
           .then(s => {
             setArrStudent(s)

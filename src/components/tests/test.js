@@ -43,7 +43,7 @@ export default function UserTest(props) {
 
         e.preventDefault();
         let t = {}
-        await axios.get('https://certificate-easily.onrender.com/api/students/' + props.location.state.studentId)
+        await axios.get('https://certificates-easily-back.onrender.com/api/students/' + props.location.state.studentId)
             .then(r => r.data)
             .then(res => { t.studentId = res._id })
             .catch(err => console.log(err))
@@ -57,11 +57,11 @@ export default function UserTest(props) {
             else
                 t.answers[i].answer = checkArr[i]
         })
-        axios.post('https://certificate-easily.onrender.com/api/studentToTest', t)
+        axios.post('https://certificates-easily-back.onrender.com/api/studentToTest', t)
             .then(r => r.data)
             .then(result => {
                 if (result.mark != '') {
-                    axios.put('https://certificate-easily.onrender.com/api/studentToTest', { studentId: t.studentId, mark: result.mark, subjectId: props.location.state.subjectId, id: result.id, isTeacher: false })
+                    axios.put('https://certificates-easily-back.onrender.com/api/studentToTest', { studentId: t.studentId, mark: result.mark, subjectId: props.location.state.subjectId, id: result.id, isTeacher: false })
                         .then(r => r.data)
                         .then(() => {
                             setIsSend(true)
@@ -92,11 +92,11 @@ export default function UserTest(props) {
     }
 
     useEffect(() => {
-        axios.put('https://certificate-easily.onrender.com/api/studentToTest/test', { studentId: props.location.state.studentId, subjectId: props.location.state.subjectId })
+        axios.put('https://certificates-easily-back.onrender.com/api/studentToTest/test', { studentId: props.location.state.studentId, subjectId: props.location.state.subjectId })
             .then(response => response.data)
             .then(x => {
                 if (!x) {
-                    axios.get('https://certificate-easily.onrender.com/api/tests/' + props.location.state.subjectId)
+                    axios.get('https://certificates-easily-back.onrender.com/api/tests/' + props.location.state.subjectId)
                         .then(r => r.data)
                         .then(res => {
                             if (res) {

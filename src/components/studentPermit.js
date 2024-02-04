@@ -16,7 +16,7 @@ export default function StudentPermit() {
     const toast = useRef(null);
 
     const getStudent = async () => {
-        const arrstudentDetails = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}`)
+        const arrstudentDetails = await axios.get(`https://certificates-easily-back.onrender.com/api/students/${id}`)
 
         if (arrstudentDetails)
             return arrstudentDetails.data.firstName + "      " + arrstudentDetails.data.lastName
@@ -30,7 +30,7 @@ export default function StudentPermit() {
     student();
 
     const getPdfFromNodejs = (status) => {
-        return axios.get(`https://certificate-easily.onrender.com/api/students/pdf/${id}/${status}`, {
+        return axios.get(`https://certificates-easily-back.onrender.com/api/students/pdf/${id}/${status}`, {
             responseType: "blob"
             //Force to receive data in a Blob Format
         })

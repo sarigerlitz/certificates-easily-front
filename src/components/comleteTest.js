@@ -11,12 +11,12 @@ export default function CompleteTest() {
     const [tests, setTests] = useState([]);
     const { id } = useParams();
     const getTests = async () => {
-        const arrTests = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}/uncompletedTests`)
+        const arrTests = await axios.get(`https://certificates-easily-back.onrender.com/api/students/${id}/uncompletedTests`)
         if (arrTests)
             return arrTests.data
     }
     const getStudent = async () => {
-        const arrstudentDetails = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}`)
+        const arrstudentDetails = await axios.get(`https://certificates-easily-back.onrender.com/api/students/${id}`)
 
         if (arrstudentDetails)
             return arrstudentDetails.data.firstName
@@ -27,7 +27,7 @@ export default function CompleteTest() {
             if (data) {
                 //   setTests(data);
                 await data.forEach((element, i) => {
-                    axios.put('https://certificate-easily.onrender.com/api/studentToTest/test', { studentId: id, subjectId: element._id })
+                    axios.put('https://certificates-easily-back.onrender.com/api/studentToTest/test', { studentId: id, subjectId: element._id })
                         .then(r => r.data)
                         .then(res => {
                             if (res && res != 'no test')

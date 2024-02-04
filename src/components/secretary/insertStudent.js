@@ -38,7 +38,7 @@ export default function Students(props) {
     s.email = form.target.email.value
     s.schoolYear = form.target.schoolYear.value
     s.BalanceOfPayment = form.target.BalanceOfPayment.value
-    axios.post('https://certificate-easily.onrender.com/api/students', s)
+    axios.post('https://certificates-easily-back.onrender.com/api/students', s)
       .then(r => r.data)
       .then(s => {
         //  setTimeout(() =>history.push({pathname:'/AllStudent',state:{id:props.location.state.id}}),2500)

@@ -51,7 +51,7 @@ export default class StudentPayment extends React.Component {
   getStatus = () => {
     const id = this.props.match.params.id
     const password = this.props.match.params.password
-    return axios.get(`https://certificate-easily.onrender.com/api/students/login/${id}/${password}`).then(res => res.data)
+    return axios.get(`https://certificates-easily-back.onrender.com/api/students/login/${id}/${password}`).then(res => res.data)
   }
   checkStatus = async () => {
 
@@ -78,7 +78,7 @@ export default class StudentPayment extends React.Component {
       status: 1
     };
     const id = this.props.match.params.id
-    const arrstudentDetails = await axios.post(`https://certificate-easily.onrender.com/api/students/payments/${id}`, { pay })
+    const arrstudentDetails = await axios.post(`https://certificates-easily-back.onrender.com/api/students/payments/${id}`, { pay })
     if (arrstudentDetails) {
       console.log(Number(arrstudentDetails.data.BalanceOfPayment));
       return arrstudentDetails.data.BalanceOfPayment
@@ -86,7 +86,7 @@ export default class StudentPayment extends React.Component {
   }
   getStudent = async () => {
     const id = this.props.match.params.id
-    const arrstudentDetails = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}`)
+    const arrstudentDetails = await axios.get(`https://certificates-easily-back.onrender.com/api/students/${id}`)
     if (arrstudentDetails)
       return arrstudentDetails.data.BalanceOfPayment
   }

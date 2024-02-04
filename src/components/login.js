@@ -34,7 +34,7 @@ export default function Login() {
   const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const getStatus = () => {
-    return axios.get(`https://certificate-easily.onrender.com/api/students/login/${id}/${password}`).then(res => res.data)
+    return axios.get(`https://certificates-easily-back.onrender.com/api/students/login/${id}/${password}`).then(res => res.data)
   }
   const checkStatus = () => {
     if (id == '123456789' && password == '000000') {
