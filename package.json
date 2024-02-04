@@ -1,0 +1,44 @@
+{
+  "name": "react-credit-cards-demo",
+  "version": "0.0.54",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.0.2",
+    "@mui/styles": "^5.4.4",
+    "@react-pdf/renderer": "^2.0.19",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.1.1",
+    "final-form": "^4.20.2",
+    "payment": "^2.4.6",
+    "primeflex": "^3.1.1",
+    "primeicons": "^4.1.0",
+    "primereact": "^6.6.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
+    "react-bootstrap-validation": "^0.1.11",
+    "react-countdown": "^2.3.5",
+    "react-credit-cards": "^0.8.3",
+    "react-dom": "^16.14.0",
+    "react-final-form": "^6.5.3",
+    "react-router-dom": "^5.2.1",
+    "react-transition": "^1.0.3",
+    "react-transition-group": "^4.4.2",
+    "redux": "^4.1.1",
+    "sass": "^1.43.2"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "author": "",
+  "license": "ISC"
+}

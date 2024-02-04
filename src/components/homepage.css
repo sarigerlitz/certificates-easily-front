@@ -1,0 +1,46 @@
+.smallBody {
+    margin: 0;
+    background-color: #ffffff99;
+    height: 300px;
+    width: 60%;
+    margin-right: 20%;
+}
+.easily {
+    font-family: Broadway;
+    letter-spacing: 5px;
+    stroke:  rgb(84, 143, 57);
+    font-size: 130px;
+    font-weight: 700;
+    width: 70%;
+    margin-top: 100px;
+    stroke-width: 1;
+    animation: textAnimate 5s infinite alternate;
+}
+
+ .text1 {
+    font-family: Blackadder ITC;
+    letter-spacing: 5px;
+    stroke: rgb(84, 143, 57);
+    font-size: 100px;
+    font-weight: 700;
+    stroke-width: 1;
+    width: 70%;
+
+    animation: textAnimate 5s infinite alternate;
+
+}
+
+@keyframes textAnimate {
+    0% {
+        stroke-dasharray: 0 50%;
+        stroke-dashoffset: 10%;
+        fill: hsl(188, 15%, 29%)
+    }
+
+    100% {
+        stroke-dasharray: 50% 0;
+        stroke-dashoffstet: -20%;
+        fill: hsla(189, 68%, 75%, 0%)
+    }
+
+}
