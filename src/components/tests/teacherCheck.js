@@ -19,7 +19,7 @@ export default function CheckTest() {
     const toast = useRef(null);
 
     async function saveMark() {
-        await axios.put('http://localhost:8000/api/studentToTest', { studentId: studentTest.studentId, mark: mark, subjectId: test.subjectId, id: id, isTeacher: true })
+        await axios.put('https://certificate-easily.onrender.com/api/studentToTest', { studentId: studentTest.studentId, mark: mark, subjectId: test.subjectId, id: id, isTeacher: true })
             .then(r => r.data)
             .then(res => { setIsSend(true) })
             .catch(err => console.log(err))
@@ -29,12 +29,12 @@ export default function CheckTest() {
         }, 3000)
     }
     useEffect(() => {
-        axios.get('http://localhost:8000/api/studentToTest/test/' + id)
+        axios.get('https://certificate-easily.onrender.com/api/studentToTest/test/' + id)
             .then(r => r.data)
             .then(res => {
                 setStudentTest(res.test)
                 setName(res.name)
-                axios.get('http://localhost:8000/api/tests/test/' + res.test.testId)
+                axios.get('https://certificate-easily.onrender.com/api/tests/test/' + res.test.testId)
                     .then(result => result.data)
                     .then(t => { setTest(t.test); setSubject(t.subject); })
                     .catch(err => console.log(err))

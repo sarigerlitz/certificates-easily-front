@@ -33,15 +33,15 @@ export default function Students(props) {
     s.id = form.target.id.value
     s.firstName = form.target.firstName.value
     s.lastName = form.target.lastName.value
-    s.password=form.target.password.value
+    s.password = form.target.password.value
     s.phone = form.target.phone.value
     s.email = form.target.email.value
     s.schoolYear = form.target.schoolYear.value
     s.BalanceOfPayment = form.target.BalanceOfPayment.value
-    axios.post('http://localhost:8000/api/students', s)
+    axios.post('https://certificate-easily.onrender.com/api/students', s)
       .then(r => r.data)
-      .then(s=>{
-      //  setTimeout(() =>history.push({pathname:'/AllStudent',state:{id:props.location.state.id}}),2500)
+      .then(s => {
+        //  setTimeout(() =>history.push({pathname:'/AllStudent',state:{id:props.location.state.id}}),2500)
       })
       .catch(err => console.log(err))
     //ריקון השדות של הטופס

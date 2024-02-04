@@ -47,18 +47,18 @@ export default function TestFunc(props) {
         test.type = props.location.state.data.type
         test.questions = arrQustions
         test.answers = arrAnswers
-        axios.post('http://localhost:8000/api/tests', test)
+        axios.post('https://certificate-easily.onrender.com/api/tests', test)
             .then(r => r.data)
             .then(s => {
                 setIsAdd(true)
                 // history.push('/AllStudent' )
             })
             .catch(err => console.log(err))
-            toast.current.show({ severity: 'success', summary: 'בוצע בהצלחה', detail: 'המבחן נשמר', life: 3000 });
-            setTimeout(() => {
-                console.log("tick");
-                history.push({ pathname: '/AddTest', state: { id: props.location.state.id } });
-            }, 3000);
+        toast.current.show({ severity: 'success', summary: 'בוצע בהצלחה', detail: 'המבחן נשמר', life: 3000 });
+        setTimeout(() => {
+            console.log("tick");
+            history.push({ pathname: '/AddTest', state: { id: props.location.state.id } });
+        }, 3000);
     }
 
     function addQuestion(e) {
@@ -77,50 +77,50 @@ export default function TestFunc(props) {
     }
     return (
         <React.Fragment>
-        <Toast ref={toast} />
-        {!isAdd ?
-            <div>
-                {/* <CloseIcon onClick={() => history.push({ pathname: '/Secretary', state: { id: props.location.state.id } })} /> */}
-                <Form onSubmit={(e) => addQuestion(e)} className={classes.form}>
-                    <ArrowForwardIcon style={{ marginBottom: '15px' }} onClick={hideAddTestDialog} />
-                    <Form.Group className="mb-3">
-                        <FormControl as="textarea" id='question' placeholder='הכנס שאלה' aria-label="With textarea" required className={classes.formControl} />
-                        <FormControl as="textarea" id='answer' placeholder='הכנס תשובה' aria-label="With textarea" required className={classes.formControl} />
-                        {props.location.state.data.type ?
-                            <Form.Text id="passwordHelpBlock" muted>
-                                הכניסי מילות מפתח שחייבות להיות כלולות בתשובה, בין מילה למילה הכניסי פסיק
-                                הכניסי ; לאחר קבוצה של מילים נרדפות
-                            </Form.Text> :
-                            <Form.Text id="passwordHelpBlock" muted>
-                                 הכניסי מספר תשובות לבחירה בין תשובה לתשובה לחצי על מקש Enter
-                                ,הכניסי תחילה את התשובה הנכונה.
-                            </Form.Text>}
-                    </Form.Group>
-                    <div style={{ textAlign: 'center' }}>
-                        <ButtonPrime type="submit" label="הוסף שאלה" style={{ backgroundColor: 'rgb(51 90 33)', color: 'white' }} icon="pi pi-plus" className="p-button-text" />
-                    </div>
-                </Form>
-                {arrQustions.length > 0 && arrAnswers.length > 0 ?
-                    <Container style={{ border: '1px solid black', textAlign: 'right', width: '70%', backgroundColor: '#ffffffbd' }}>
-                        <Col><h2>מבחן ב{props.location.state.data.subject}</h2></Col>
-                        {/* <h3>שאלות</h3>
+            <Toast ref={toast} />
+            {!isAdd ?
+                <div>
+                    {/* <CloseIcon onClick={() => history.push({ pathname: '/Secretary', state: { id: props.location.state.id } })} /> */}
+                    <Form onSubmit={(e) => addQuestion(e)} className={classes.form}>
+                        <ArrowForwardIcon style={{ marginBottom: '15px' }} onClick={hideAddTestDialog} />
+                        <Form.Group className="mb-3">
+                            <FormControl as="textarea" id='question' placeholder='הכנס שאלה' aria-label="With textarea" required className={classes.formControl} />
+                            <FormControl as="textarea" id='answer' placeholder='הכנס תשובה' aria-label="With textarea" required className={classes.formControl} />
+                            {props.location.state.data.type ?
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    הכניסי מילות מפתח שחייבות להיות כלולות בתשובה, בין מילה למילה הכניסי פסיק
+                                    הכניסי ; לאחר קבוצה של מילים נרדפות
+                                </Form.Text> :
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    הכניסי מספר תשובות לבחירה בין תשובה לתשובה לחצי על מקש Enter
+                                    ,הכניסי תחילה את התשובה הנכונה.
+                                </Form.Text>}
+                        </Form.Group>
+                        <div style={{ textAlign: 'center' }}>
+                            <ButtonPrime type="submit" label="הוסף שאלה" style={{ backgroundColor: 'rgb(51 90 33)', color: 'white' }} icon="pi pi-plus" className="p-button-text" />
+                        </div>
+                    </Form>
+                    {arrQustions.length > 0 && arrAnswers.length > 0 ?
+                        <Container style={{ border: '1px solid black', textAlign: 'right', width: '70%', backgroundColor: '#ffffffbd' }}>
+                            <Col><h2>מבחן ב{props.location.state.data.subject}</h2></Col>
+                            {/* <h3>שאלות</h3>
        {arrQustions.map((item,key)=>(
           <Row>{key+1}. {item.question}</Row>
       ))} */}
-                        {arrQustions.map((item, key) => (
-                            <Col><h4>שאלה מספר {key + 1}</h4>
-                                <Row><h5>שאלה</h5></Row><Row>{item.question}</Row>
-                                     {!props.location.state.data.type ?
-                                    <div><Row><h5>תשובה</h5></Row>
-                                        {arrAnswers[key].answer.split('\n').map((i, k) => (
-                                            <Row key={key}>{' '}
-                                                <input type='checkbox' id="check"></input>{' ' + i}
-                                            </Row>
-                                        ))}</div> :
-                                    <div><Row><h5>תשובה</h5></Row><Row>{arrAnswers[key].answer}</Row></div>}</Col>
-                        ))}
+                            {arrQustions.map((item, key) => (
+                                <Col><h4>שאלה מספר {key + 1}</h4>
+                                    <Row><h5>שאלה</h5></Row><Row>{item.question}</Row>
+                                    {!props.location.state.data.type ?
+                                        <div><Row><h5>תשובה</h5></Row>
+                                            {arrAnswers[key].answer.split('\n').map((i, k) => (
+                                                <Row key={key}>{' '}
+                                                    <input type='checkbox' id="check"></input>{' ' + i}
+                                                </Row>
+                                            ))}</div> :
+                                        <div><Row><h5>תשובה</h5></Row><Row>{arrAnswers[key].answer}</Row></div>}</Col>
+                            ))}
 
-                        {/* <h3>תשובות</h3>
+                            {/* <h3>תשובות</h3>
    {arrAnswers.map((item,key)=>(
        !props.location.state.data.type?
        <div>{key+1}.
@@ -131,10 +131,10 @@ export default function TestFunc(props) {
         ))}</div>:
          <Row>{key+1}. {item.answer}</Row>
       ))} */}
-                        <ButtonPrime label="שמור מבחן" style={{ backgroundColor: 'rgb(51 90 33)', color: 'white' }} icon="pi pi-save" className="p-button-text" onClick={addTest}/>
-                        {/* <Button variant="outline-primary" type="button" onClick={() => addTest()}><SaveAsIcon />שמור מבחן</Button> */}
-                    </Container> : null}
-            {/* <div>
+                            <ButtonPrime label="שמור מבחן" style={{ backgroundColor: 'rgb(51 90 33)', color: 'white' }} icon="pi pi-save" className="p-button-text" onClick={addTest} />
+                            {/* <Button variant="outline-primary" type="button" onClick={() => addTest()}><SaveAsIcon />שמור מבחן</Button> */}
+                        </Container> : null}
+                    {/* <div>
                 <Alert variant="success" ><CloseIcon onClick={() => history.push({ pathname: '/Secretary', state: { id: props.location.state.id } })} />
                     <Alert.Heading style={{ textAlign: 'right', direction: 'rtl' }}><DoneIcon />סיימנו!!! תודה רבה</Alert.Heading>
                     <p style={{ textAlign: 'right', direction: 'rtl' }}>
@@ -143,7 +143,7 @@ export default function TestFunc(props) {
                     <hr />
                 </Alert>
             </div> */}
-            </div>: null }
+                </div> : null}
         </React.Fragment>
     )
 }

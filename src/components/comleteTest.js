@@ -11,12 +11,12 @@ export default function CompleteTest() {
     const [tests, setTests] = useState([]);
     const { id } = useParams();
     const getTests = async () => {
-        const arrTests = await axios.get(`http://localhost:8000/api/students/${id}/uncompletedTests`)
+        const arrTests = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}/uncompletedTests`)
         if (arrTests)
             return arrTests.data
     }
     const getStudent = async () => {
-        const arrstudentDetails = await axios.get(`http://localhost:8000/api/students/${id}`)
+        const arrstudentDetails = await axios.get(`https://certificate-easily.onrender.com/api/students/${id}`)
 
         if (arrstudentDetails)
             return arrstudentDetails.data.firstName
@@ -24,17 +24,17 @@ export default function CompleteTest() {
     useEffect(() => {
         async function tests() {
             let data = await getTests();
-            if (data){
-            //   setTests(data);
-              await  data.forEach((element,i) => {
-                axios.put('http://localhost:8000/api/studentToTest/test', { studentId: id, subjectId: element._id })
-                .then(r=>r.data)
-                .then(res=>{
-                    if(res&&res!='no test')
-                    element.complete = true
-                    setTests([...tests,element])
-                })
-                .catch(err=>console.log(err))
+            if (data) {
+                //   setTests(data);
+                await data.forEach((element, i) => {
+                    axios.put('https://certificate-easily.onrender.com/api/studentToTest/test', { studentId: id, subjectId: element._id })
+                        .then(r => r.data)
+                        .then(res => {
+                            if (res && res != 'no test')
+                                element.complete = true
+                            setTests([...tests, element])
+                        })
+                        .catch(err => console.log(err))
                 });
             }
         }
@@ -48,14 +48,14 @@ export default function CompleteTest() {
     }, [])
     return (
         <div className="container containerCompleteTest">
-        <h4>שלום {name},<br/>  עלייך להשלים את המבחנים הבאים <br/> רק לאחר שתשלימי תוכלי לקבל אשור לימודים </h4>
-        <ul>
-            {tests.map((item, index) =>
-            <div key={index}>
-                <li>{item.subject}</li>{item.complete?<h5 style={{color:'green'}}>מבחן בבדיקה</h5>:<Button onClick={()=>history.push({pathname:'/TestComplete',state:{studentId:id,subjectId:item._id,subject:item.subject}})}>להשלמת המבחן</Button>}
-            </div>
-            )}
-        </ul>
-    </div>
+            <h4>שלום {name},<br />  עלייך להשלים את המבחנים הבאים <br /> רק לאחר שתשלימי תוכלי לקבל אשור לימודים </h4>
+            <ul>
+                {tests.map((item, index) =>
+                    <div key={index}>
+                        <li>{item.subject}</li>{item.complete ? <h5 style={{ color: 'green' }}>מבחן בבדיקה</h5> : <Button onClick={() => history.push({ pathname: '/TestComplete', state: { studentId: id, subjectId: item._id, subject: item.subject } })}>להשלמת המבחן</Button>}
+                    </div>
+                )}
+            </ul>
+        </div>
     );
 }

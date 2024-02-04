@@ -32,7 +32,7 @@ export default function Test(props) {
     history.push('/');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/subject')
+    axios.get('https://certificate-easily.onrender.com/api/subject')
       .then(r => r.data)
       .then(s => setSubject(s))
       .catch(err => console.log(err))
@@ -50,7 +50,7 @@ export default function Test(props) {
     else
       obj.type = 0
     if (sub == 'אחר') {
-      await axios.post('http://localhost:8000/api/subject', { subject: e.target.newSub.value })
+      await axios.post('https://certificate-easily.onrender.com/api/subject', { subject: e.target.newSub.value })
         .then(r => r.data)
         .then(s => {
           obj.subject = s.subject
